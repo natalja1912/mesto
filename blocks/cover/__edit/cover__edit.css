@@ -1,0 +1,21 @@
+.cover__edit{
+    width: 24px;
+    height: 24px;
+    grid-column: 3/3;
+    grid-row: 1/1;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-left: 17px;
+    margin-bottom: 5px;
+    font: inherit;
+    font-size: 0;
+    background-color: #000000;
+    background-image: url(../../../images/edit-button.svg);
+    background-size: 42%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border: 1px solid #FFFFFF;
+    
+}

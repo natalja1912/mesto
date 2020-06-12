@@ -1,0 +1,6 @@
+.places{
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 21px 18px;
+}

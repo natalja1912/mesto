@@ -1,0 +1,11 @@
+@import url(./__image/place__image.css);
+@import url(./__heading/place__heading.css);
+@import url(./__info/place__info.css);
+@import url(./__like-button/place__like-button.css);
+
+.place{
+    width: 282px;
+    height: 361px;
+    background: #FFFFFF;
+    border-radius: 10px;
+}

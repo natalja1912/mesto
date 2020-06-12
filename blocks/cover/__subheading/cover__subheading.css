@@ -1,0 +1,12 @@
+.cover__subheading {
+    margin: 0;
+    padding: 0;
+    margin-top: 16px;
+    align-self: start;
+    font-family: "Inter", Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1;
+    color: #FFFFFF;
+  }

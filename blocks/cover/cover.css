@@ -1,0 +1,14 @@
+@import url(./__image/cover__image.css);
+@import url(./__heading/cover__heading.css);
+@import url(./__subheading/cover__subheading.css);
+@import url(./__profile/cover__profile.css);
+@import url(./__edit/cover__edit.css);
+@import url(./__add/cover__add.css);
+
+.cover{
+    padding-top: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
