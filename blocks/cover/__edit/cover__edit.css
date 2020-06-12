@@ -1,8 +1,7 @@
 .cover__edit{
     width: 24px;
     height: 24px;
-    grid-column: 3/3;
-    grid-row: 1/1;
+    align-self: flex-end;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -18,4 +17,14 @@
     border: none;
     border: 1px solid #FFFFFF;
     
+}
+
+
+@media screen and (max-width: 767px) {
+    .cover__edit{
+        margin: 0;
+        margin-left: 5px;
+        align-self: center;
+        justify-self: start;
+    }
 }

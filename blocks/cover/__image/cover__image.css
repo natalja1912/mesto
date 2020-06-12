@@ -8,3 +8,10 @@
     background-position: center;
     border-radius: 95%;
   }
+
+  @media screen and (max-width: 767px) {
+    .cover__image{
+        margin: 0;
+        margin-bottom: 10px;
+    }
+}

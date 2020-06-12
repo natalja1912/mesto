@@ -9,9 +9,11 @@
     color: #FFFFFF;
   }
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 767px) {
     .cover__heading{
-      margin-bottom: 14px;
+      margin: 0;
+      font-size: 27px;
+      line-height: 1.71;
     
     }
 }

@@ -1,7 +1,6 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts.css);
 @import url(../blocks/page/page.css);
-@import url(../blocks/section-format-auto/section-format-auto.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/cover/cover.css);
 @import url(../blocks/places/places.css);

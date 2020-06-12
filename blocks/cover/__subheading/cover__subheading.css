@@ -10,3 +10,11 @@
     line-height: 1;
     color: #FFFFFF;
   }
+
+  @media screen and (max-width: 767px) {
+    .cover__subheading{
+      font-size: 14px;
+      margin: 0;
+      align-self: center;
+    }
+}
