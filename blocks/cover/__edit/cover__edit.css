@@ -22,13 +22,21 @@
 
 .cover__edit:hover{
     opacity: 0.6;
+    transition: opacity 0.4s linear;
 }
 
 @media screen and (max-width: 767px) {
     .cover__edit{
-        margin: 0;
         margin-left: 5px;
         align-self: center;
         justify-self: start;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .cover__edit{
+        width: 18px;
+        height: 18px;
+        margin-bottom: 0;
     }
 }
