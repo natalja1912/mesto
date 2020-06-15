@@ -19,9 +19,12 @@
     transition: opacity 0.4s linear;
 }
 
-@media screen and (max-width: 425px) {
+
+@media screen and (max-width: 767px) {
     .popup__close-button{
-        width: 25px;
-        height: 25px;
+        top: 0;
+        right: 0;
+        transform: translate(-25%, 25%);
+        background-image: url(../../../images/close-button-black.svg);
     }
 }

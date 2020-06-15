@@ -29,3 +29,9 @@
         max-width: 282px;
     }
 }
+
+@media screen and (max-width: 425px) {
+    .cover__add{
+        background-size: 16px 16px;
+    }
+}

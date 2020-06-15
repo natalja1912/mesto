@@ -7,22 +7,19 @@ let addButton = popup.querySelector('.popup__add-button');
 let closeButton = popup.querySelector('.popup__close-button');
 let popupName = popup.querySelector('.popup__text_type_name');
 let popupJob = popup.querySelector('.popup__text_type_job');
+let popupForm = document.querySelector('.popup');
 
 //открытие и закрытие формы с редактированием профиля
 
 function popupToggle(){
     popup.classList.toggle('popup_opened');
+    if (popup.classList.contains('popup_opened')) {
     popupName.value = coverName.textContent;
     popupJob.value = coverJob.textContent;
+    }
 }
 
-editButton.addEventListener('click', popupToggle);
-closeButton.addEventListener('click', popupToggle);
-
-
 //загрузка данных из формы на страницу
-
-let popupForm = document.querySelector('.popup');
 
 function formSubmitHandler(evt){
     evt.preventDefault();
@@ -31,6 +28,8 @@ function formSubmitHandler(evt){
     popupToggle();
 }
 
+editButton.addEventListener('click', popupToggle);
+closeButton.addEventListener('click', popupToggle);
 popupForm.addEventListener('submit', formSubmitHandler);
 
 

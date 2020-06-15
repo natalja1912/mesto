@@ -21,3 +21,10 @@
       align-self: center;
     }
 }
+
+@media screen and (max-width: 767px) {
+  .cover__subheading{
+    max-width: 270px;
+  
+  }
+}
