@@ -14,8 +14,6 @@ function popupToggle(){
     popup.classList.toggle('popup_opened');
 }
 
-popupToggle();
-
 
 editButton.addEventListener('click', popupToggle);
 closeButton.addEventListener('click', popupToggle);
