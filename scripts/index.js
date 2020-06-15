@@ -12,21 +12,19 @@ let popupJob = popup.querySelector('.popup__text_type_job');
 
 function popupToggle(){
     popup.classList.toggle('popup_opened');
+    popupName.value = coverName.textContent;
+    popupJob.value = coverJob.textContent;
 }
-
 
 editButton.addEventListener('click', popupToggle);
 closeButton.addEventListener('click', popupToggle);
-
-popupName.value = coverName.textContent;
-popupJob.value = coverJob.textContent;
 
 
 //загрузка данных из формы на страницу
 
 let popupForm = document.querySelector('.popup');
 
-let formSubmitHandler = function formSubmitHandler(evt){
+function formSubmitHandler(evt){
     evt.preventDefault();
     coverName.textContent = popupName.value;
     coverJob.textContent = popupJob.value;
