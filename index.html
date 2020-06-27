@@ -24,59 +24,37 @@
                 <button class="cover__add" aria-label="Добавить" type="button"></button>
             </section>
             <section class="places">
-                <div class="place">
-                    <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск фото">
-                    <div class="place__info">
-                        <p class="place__heading">Карачаевск</p>
-                        <button class="place__like-button" aria-label="Мне нравится" type="button"></button>
+                <template class="place__template">
+                    <div class="place">
+                        <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск фото">
+                        <div class="place__info">
+                            <p class="place__heading">Карачаевск</p>
+                            <button class="place__like-button" aria-label="Мне нравится" type="button"></button>
+                        </div>
                     </div>
-                </div>
-                <div class="place">
-                    <img class="place__image" src="./images/elbrus.jpg" alt="Эльбрус фото">
-                    <div class="place__info">
-                        <p class="place__heading">Эльбрус</p>
-                        <button class="place__like-button" aria-label="Мне нравится" type="button"></button>
-                    </div>
-                </div>
-                <div class="place">
-                    <img class="place__image" src="./images/dombay.jpg" alt="Домбай фото">
-                    <div class="place__info">
-                        <p class="place__heading">Домбай</p>
-                        <button class="place__like-button" aria-label="Мне нравится" type="button"></button>
-                    </div>
-                </div>
-                <div class="place">
-                    <img class="place__image" src="./images/elbrus.jpg" alt="Эльбрус фото">
-                    <div class="place__info">
-                        <p class="place__heading">Эльбрус</p>
-                        <button class="place__like-button" aria-label="Мне нравится" type="button"></button>
-                    </div>
-                </div>
-                <div class="place">
-                    <img class="place__image" src="./images/dombay.jpg" alt="Домбай фото">
-                    <div class="place__info">
-                        <p class="place__heading">Домбай</p>
-                        <button class="place__like-button" aria-label="Мне нравится" type="button"></button>
-                    </div>
-                </div>
-                <div class="place">
-                    <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск фото">
-                    <div class="place__info">
-                        <p class="place__heading">Карачаевск</p>
-                        <button class="place__like-button" aria-label="Мне нравится" type="button"></button>
-                    </div>
-                </div>
+                </template>
             </section>
             <section class="popup">
-                <form class="popup__container" name="popup__container">
-                    <h2 class="popup__heading">Редактировать профиль</h2>
+                <form class="popup__container popup__container_type_profile" name="popup__container_type_profile">
+                    <h2 class="popup__heading popup__heading_type_profile">Редактировать профиль</h2>
                       <input type="text" class="popup__text popup__text_type_name" name="popup__text_type_name" placeholder="Имя исследователя" required>
                       <input type="text" class="popup__text popup__text_type_job" name="popup__text_type_job" placeholder="Профессия исследователя" required>
-                      <button class="popup__add-button" type="submit">
+                      <button class="popup__add-button popup__add-button_type_profile" type="submit">
                         Сохранить
                       </button>
-                      <button class="popup__close-button" type="button"></button>
+                      <button class="popup__close-button popup__close-button_type_profile" type="button"></button>
                     </form>
+            </section>
+            <section class="popup">
+            <form class="popup__container popup__container_type_place" name="popup__container_type_place">
+                <h2 class="popup__heading popup__heading_type_place">Новое место</h2>
+                  <input type="text" class="popup__text popup__text_type_placename" name="popup__text_type_placename" placeholder="Горнный Алтай" required>
+                  <input type="text" class="popup__text popup__text_type_placelink" name="popup__text_type_placelink" placeholder="https://unsplash.com/example.jpg" required>
+                  <button class="popup__add-button popup__add-button_type_place" type="submit">
+                    Сохранить
+                  </button>
+                  <button class="popup__close-button popup__close-button_type_place" type="button"></button>
+            </form>
             </section>
         </main>
         <footer class="footer">
