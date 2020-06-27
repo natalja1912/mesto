@@ -8,8 +8,9 @@
     background-position: center;
     border: none;
     position: absolute;
-    top: -8%;
-    right: -8%;
+    top: 0;
+    right: 0;
+    transform: translate(80%, -80%);
     cursor: pointer;
     
   
@@ -19,12 +20,3 @@
     transition: opacity 0.4s linear;
 }
 
-
-@media screen and (max-width: 767px) {
-    .popup__close-button{
-        top: 0;
-        right: 0;
-        transform: translate(-25%, 25%);
-        background-image: url(../../../images/close-button-black.svg);
-    }
-}

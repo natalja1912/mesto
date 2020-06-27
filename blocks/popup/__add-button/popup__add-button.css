@@ -18,4 +18,10 @@
     transition: all 0.4s linear;
 }
 
-
+@media screen and (max-width: 425px) {
+    .popup__add-button{
+        min-height: 40px;
+        font-size: 14px;
+        margin-top: 36px;
+    }
+}
