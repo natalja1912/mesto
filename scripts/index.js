@@ -29,13 +29,17 @@ const closeButtonPhoto = popupPhoto.querySelector('.popup__close-button_type_pho
 
 //открытие и закрытие форм
 
-function popupToggle(popup){
+function togglePopup(popup){
     popup.classList.toggle('popup_opened');
-    if (popup.classList.contains('popup_opened') && popup.classList.contains('popup_type_profile') ) {
-        popupName.value = coverName.textContent;
-        popupJob.value = coverJob.textContent;
-    }
 
+};
+
+//загрузка данных со страницы в форму редактирования профиля
+
+function formProfileInitialInfo (evt){
+    togglePopup(popupProfile);
+    popupName.value = coverName.textContent;
+    popupJob.value = coverJob.textContent;
 };
 
 //загрузка данных из формы редактирования профиля исследователя на страницу
@@ -44,82 +48,60 @@ function formSubmitHandlerProfile(evt){
     evt.preventDefault();
     coverName.textContent = popupName.value;
     coverJob.textContent = popupJob.value;
-    popupToggle(popupProfile);
+    togglePopup(popupProfile);
 }
 
-//6 первоначальных карточек 
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-
-//добавление карточек на страницу
-
+//создание новой карточки
 
 function addCard(text, link) {
     const newCard = cardTemplate.cloneNode(true);
+    const placeImage = newCard.querySelector('.place__image');
     newCard.querySelector('.place__heading').textContent=text;
-    newCard.querySelector('.place__image').src=link;
-    newCard.querySelector('.place__image').alt = text;
+    placeImage.src=link;
+    placeImage.alt = text;
     newCard.querySelector('.place__like-button').addEventListener('click', addLike);
     newCard.querySelector('.place__delete-button').addEventListener('click', deleteCard);
-    newCard.querySelector('.place__image-button').addEventListener('click', () => enlargePhoto(popupPhoto, link, text));
+    newCard.querySelector('.place__image-button').addEventListener('click', () => handlePreviewPicture(popupPhoto, link, text));
+    return newCard;
+};
+
+//добавление карточек на страницу
+
+function renderCard(text, link){
+    const newCard = addCard(text, link);
     places.prepend(newCard);
 };
 
 initialCards.forEach(item => {
     let text = item.name;
     let link = item.link;
-    addCard(text, link);
+    renderCard(text, link);
 });
 
 function formSubmitHandlerPlace(evt){
     evt.preventDefault();
     let text = popupPlaceName.value;
     let link = popupPlaceLink.value;
-    addCard(text, link);
-    popupToggle(popupPlace);
+    renderCard(text, link);
+    togglePopup(popupPlace);
 };
 
 //затемнение кнопки лайк
 function addLike(evt){
     const eventTarget = evt.target;
-    eventTarget.classList.toggle('place__like-button_active');
+    evt.target.classList.toggle('place__like-button_active');
 };
 
 //удаление карточки
 function deleteCard(evt){
     const eventTarget = evt.target;
-    eventTarget.closest('.place').remove();
+    evt.target.closest('.place').remove();
 };
 
 //увеличение фото
-function enlargePhoto(popupPhoto, link, text){
-    popupToggle(popupPhoto);
+function handlePreviewPicture(popupPhoto, link, text){
+    togglePopup(popupPhoto);
     popupImageText.textContent = text;
     popupImage.src = link;
     popupImage.alt = text;
@@ -128,12 +110,12 @@ function enlargePhoto(popupPhoto, link, text){
 
 //обработчики событий кнопок
 
-editButton.addEventListener('click', () => popupToggle(popupProfile));
-addButton.addEventListener('click', () => popupToggle(popupPlace));
+editButton.addEventListener('click', formProfileInitialInfo);
+addButton.addEventListener('click', () => togglePopup(popupPlace));
 
-closeButtonProfile.addEventListener('click', () => popupToggle(popupProfile));
-closeButtonPlace.addEventListener('click', () => popupToggle(popupPlace));
-closeButtonPhoto.addEventListener('click', () => popupToggle(popupPhoto));
+closeButtonProfile.addEventListener('click', () => togglePopup(popupProfile));
+closeButtonPlace.addEventListener('click', () => togglePopup(popupPlace));
+closeButtonPhoto.addEventListener('click', () => togglePopup(popupPhoto));
 
 popupProfileForm.addEventListener('submit', formSubmitHandlerProfile);
 popupPlaceForm.addEventListener('submit', formSubmitHandlerPlace);
