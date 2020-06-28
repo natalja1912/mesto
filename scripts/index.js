@@ -27,7 +27,27 @@ const closeButtonPlace = popupPlace.querySelector('.popup__close-button_type_pla
 const closeButtonPhoto = popupPhoto.querySelector('.popup__close-button_type_photo');
 
 
-//загрузка 6 карточек на страницу
+//открытие и закрытие форм
+
+function popupToggle(popup){
+    popup.classList.toggle('popup_opened');
+    if (popup.classList.contains('popup_opened') && popup.classList.contains('popup_type_profile') ) {
+        popupName.value = coverName.textContent;
+        popupJob.value = coverJob.textContent;
+    }
+
+};
+
+//загрузка данных из формы редактирования профиля исследователя на страницу
+
+function formSubmitHandlerProfile(evt){
+    evt.preventDefault();
+    coverName.textContent = popupName.value;
+    coverJob.textContent = popupJob.value;
+    popupToggle(popupProfile);
+}
+
+//6 первоначальных карточек 
 
 const initialCards = [
     {
@@ -56,58 +76,9 @@ const initialCards = [
     }
 ];
 
-//затемнение кнопки лайк
-function addLike(evt){
-    const eventTarget = evt.target;
-    eventTarget.classList.toggle('place__like-button_active');
-};
-
-//удаление карточки
-function deleteCard(evt){
-    const eventTarget = evt.target;
-    eventTarget.closest('.place').remove();
-};
-
-
-//открытие и закрытие форм
-
-function popupToggle(popup){
-    popup.classList.toggle('popup_opened');
-    if (popup.classList.contains('popup_opened') && popup.classList.contains('popup_type_profile') ) {
-        popupName.value = coverName.textContent;
-        popupJob.value = coverJob.textContent;
-    }
-
-};
-
-//увеличение фото
-function enlargePhoto(popupPhoto, link, text){
-    popupToggle(popupPhoto);
-    popupImageText.textContent = text;
-    popupImage.src = link;
-    popupImage.alt = text;
-    
-};
-
-
-//загрузка данных из формы редактирования профиля исследователя на страницу
-
-function formSubmitHandlerProfile(evt){
-    evt.preventDefault();
-    coverName.textContent = popupName.value;
-    coverJob.textContent = popupJob.value;
-    popupToggle(popupProfile);
-}
 
 //добавление карточек на страницу
 
-function formSubmitHandlerPlace(evt){
-    evt.preventDefault();
-    let text = popupPlaceName.value;
-    let link = popupPlaceLink.value;
-    addCard(text, link);
-    popupToggle(popupPlace);
-}
 
 function addCard(text, link) {
     const newCard = cardTemplate.cloneNode(true);
@@ -126,7 +97,36 @@ initialCards.forEach(item => {
     addCard(text, link);
 });
 
-//добавление фунциональности кнопкам
+function formSubmitHandlerPlace(evt){
+    evt.preventDefault();
+    let text = popupPlaceName.value;
+    let link = popupPlaceLink.value;
+    addCard(text, link);
+    popupToggle(popupPlace);
+};
+
+//затемнение кнопки лайк
+function addLike(evt){
+    const eventTarget = evt.target;
+    eventTarget.classList.toggle('place__like-button_active');
+};
+
+//удаление карточки
+function deleteCard(evt){
+    const eventTarget = evt.target;
+    eventTarget.closest('.place').remove();
+};
+
+//увеличение фото
+function enlargePhoto(popupPhoto, link, text){
+    popupToggle(popupPhoto);
+    popupImageText.textContent = text;
+    popupImage.src = link;
+    popupImage.alt = text;
+    
+};
+
+//обработчики событий кнопок
 
 editButton.addEventListener('click', () => popupToggle(popupProfile));
 addButton.addEventListener('click', () => popupToggle(popupPlace));

@@ -1,8 +1,9 @@
 .place__like-button_active{
-    background: url(https://code.s3.yandex.net/web-code/dom/heart-filled.svg) center no-repeat;
+    background: url(../../../../images/like-button-black.svg) center no-repeat;
     background-size: contain;
     border: none;
     background-color: #FFFFFF;
+    
 }
 
 .place__like-button_active:focus{
