@@ -36,21 +36,33 @@
                 </template>
             </section>
             <section class="popup popup_type_profile">
-                <form class="popup__container popup__container_type_profile" name="popup__container_type_profile">
+                <form class="popup__container popup__container_type_profile" name="popup__container_type_profile" novalidate>
                     <h2 class="popup__heading popup__heading_type_profile">Редактировать профиль</h2>
-                      <input type="text" class="popup__text popup__text_type_name" name="popup__text_type_name" placeholder="Имя исследователя" required>
-                      <input type="text" class="popup__text popup__text_type_job" name="popup__text_type_job" placeholder="Профессия исследователя" required>
-                      <button class="popup__add-button popup__add-button_type_profile" type="submit">
+                    <label class="popup__field">
+                        <input id="name-input" type="text" class="popup__text popup__text_type_name" name="popup__text_type_name" placeholder="Имя исследователя" minlength="2" maxlength="40" required>
+                        <span id="name-input-error" class="popup__input-error">Вы пропустили это поле.</span>
+                    </label>
+                    <label class="popup__field">
+                        <input id="job-input" type="text" class="popup__text popup__text_type_job" name="popup__text_type_job" placeholder="Профессия исследователя" minlength="2" maxlength="200" required>
+                        <span id="job-input-error" class="popup__input-error">Вы пропустили это поле.</span>
+                    </label>
+                    <button class="popup__add-button popup__add-button_type_profile" type="submit">
                         Сохранить
                       </button>
-                      <button class="popup__close-button popup__close-button_type_profile" type="button"></button>
-                    </form>
+                    <button class="popup__close-button popup__close-button_type_profile" type="button"></button>
+                </form>
             </section>
             <section class="popup popup_type_place">
-            <form class="popup__container popup__container_type_place" name="popup__container_type_place">
+            <form class="popup__container popup__container_type_place" name="popup__container_type_place" novalidate>
                 <h2 class="popup__heading popup__heading_type_place">Новое место</h2>
-                  <input type="text" class="popup__text popup__text_type_placename" name="popup__text_type_placename" placeholder="Горный Алтай" required>
-                  <input type="text" class="popup__text popup__text_type_placelink" name="popup__text_type_placelink" placeholder="https://unsplash.com/example.jpg" required>
+                <label class="popup__field">
+                    <input id="place-input" type="text" class="popup__text popup__text_type_placename" name="popup__text_type_placename" placeholder="Горный Алтай" minlength="1" maxlength="30" required>
+                    <span id="place-input-error" class="popup__input-error">Вы пропустили это поле.</span>
+                </label>
+                <label class="popup__field">
+                    <input id="site-input" type="url" class="popup__text popup__text_type_placelink" name="popup__text_type_placelink" placeholder="https://unsplash.com/example.jpg" required>
+                    <span id="site-input-error" class="popup__input-error">Введите адрес сайта.</span>
+                </label>
                   <button class="popup__add-button popup__add-button_type_place" type="submit">
                     Сохранить
                   </button>
