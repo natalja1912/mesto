@@ -36,15 +36,15 @@
                 </template>
             </section>
             <section class="popup popup_type_profile">
-                <form class="popup__container popup__container_type_profile" name="popup__container_type_profile" novalidate>
+                <form class="popup__container popup__container_type_profile popup__item" name="popup__container_type_profile" novalidate>
                     <h2 class="popup__heading popup__heading_type_profile">Редактировать профиль</h2>
-                    <label class="popup__field">
-                        <input id="name-input" type="text" class="popup__text popup__text_type_name" name="popup__text_type_name" placeholder="Имя исследователя" minlength="2" maxlength="40" required>
-                        <span id="name-input-error" class="popup__input-error">Вы пропустили это поле.</span>
+                    <label class="popup__input">
+                        <input type="text" class="popup__text popup__text_type_name" name="popup__text_type_name" placeholder="Имя исследователя" minlength="2" maxlength="40" required>
+                        <span class="popup__input-error">Вы пропустили это поле.</span>
                     </label>
-                    <label class="popup__field">
-                        <input id="job-input" type="text" class="popup__text popup__text_type_job" name="popup__text_type_job" placeholder="Профессия исследователя" minlength="2" maxlength="200" required>
-                        <span id="job-input-error" class="popup__input-error">Вы пропустили это поле.</span>
+                    <label class="popup__input">
+                        <input type="text" class="popup__text popup__text_type_job" name="popup__text_type_job" placeholder="Профессия исследователя" minlength="2" maxlength="200" required>
+                        <span class="popup__input-error">Вы пропустили это поле.</span>
                     </label>
                     <button class="popup__add-button popup__add-button_type_profile" type="submit">
                         Сохранить
@@ -53,15 +53,15 @@
                 </form>
             </section>
             <section class="popup popup_type_place">
-            <form class="popup__container popup__container_type_place" name="popup__container_type_place" novalidate>
+            <form class="popup__container popup__container_type_place popup__item" name="popup__container_type_place" novalidate>
                 <h2 class="popup__heading popup__heading_type_place">Новое место</h2>
-                <label class="popup__field">
-                    <input id="place-input" type="text" class="popup__text popup__text_type_placename" name="popup__text_type_placename" placeholder="Горный Алтай" minlength="1" maxlength="30" required>
-                    <span id="place-input-error" class="popup__input-error">Вы пропустили это поле.</span>
+                <label class="popup__input">
+                    <input type="text" class="popup__text popup__text_type_placename" name="popup__text_type_placename" placeholder="Горный Алтай" minlength="1" maxlength="30" required>
+                    <span class="popup__input-error">Вы пропустили это поле.</span>
                 </label>
-                <label class="popup__field">
-                    <input id="site-input" type="url" class="popup__text popup__text_type_placelink" name="popup__text_type_placelink" placeholder="https://unsplash.com/example.jpg" required>
-                    <span id="site-input-error" class="popup__input-error">Введите адрес сайта.</span>
+                <label class="popup__input">
+                    <input type="url" class="popup__text popup__text_type_placelink" name="popup__text_type_placelink" placeholder="https://unsplash.com/example.jpg" required>
+                    <span class="popup__input-error">Введите адрес сайта.</span>
                 </label>
                   <button class="popup__add-button popup__add-button_type_place" type="submit">
                     Сохранить
@@ -70,7 +70,7 @@
             </form>
             </section>
             <section class="popup popup_type_photo">
-                <div class="popup__image-group">
+                <div class="popup__image-group popup__item">
                     <img class="popup__image" src="./images/karachaevsk.jpg" alt="Карачаевск фото">
                     <p class="popup__text popup__text_type_photo">Text</p>
                     <button class="popup__close-button popup__close-button_type_photo" type="button"></button>
@@ -82,6 +82,7 @@
         </footer>
     </div>
     <script src="scripts/utils.js"></script>
+    <script src="scripts/validate.js"></script>
     <script src="scripts/index.js"></script>
 </body>
 </html>
