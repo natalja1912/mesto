@@ -65,9 +65,11 @@ enableValidation({
 function toggleSubmitButton (inputList, button){
     if (hasInvalidInput (inputList)){
     button.classList.add('popup__add-button_inactive');
+    button.setAttribute('disabled', true);
    }
    else {
     button.classList.remove('popup__add-button_inactive');
+    button.removeAttribute('disabled');
    }
 }
 
