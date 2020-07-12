@@ -12,11 +12,13 @@ function showInputError(formInput, formError){
 function hideInputError(formInput, formError){
     formError.classList.remove('popup__input-error_active');
     formInput.classList.remove('popup__text_type_error');
+    formError.textContent = '';
 }
 
 function isValid(formInput, formError) {
     
-    if (!formInput.validity.valid){
+    if (!formInput.validity.valid)
+    {
         showInputError(formInput, formError);
     }
     else {
@@ -29,6 +31,7 @@ function setEventListeners (form, fieldSelector, inputSelector, errorSelector, b
     
     form.addEventListener('submit', (evt) => {
         evt.preventDefault();
+        
     });
 
     const inputList = Array.from(form.querySelectorAll(inputSelector));
