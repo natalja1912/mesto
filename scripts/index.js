@@ -33,7 +33,9 @@ const popupList = Array.from(document.querySelectorAll('.popup'));
 
 function togglePopup(popup){
     popup.classList.toggle('popup_opened');
-    validationErrorsDelete (popup);
+    if (!popup.classList.contains('popup_type_photo')){
+        validationErrorsDelete (popup);
+    }
 };
 
 //очистка ошибок валидации
