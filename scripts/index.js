@@ -24,7 +24,6 @@ const closeButtonProfile = popupProfile.querySelector('.popup__close-button_type
 const closeButtonPlace = popupPlace.querySelector('.popup__close-button_type_place');
 const closeButtonPhoto = popupPhoto.querySelector('.popup__close-button_type_photo');
 
-const formList = Array.from(document.querySelectorAll('.popup__container'));
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
 //открытие и закрытие форм
