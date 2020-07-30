@@ -17,22 +17,25 @@ export default class Card {
 
     generateCard(){
         this._element = this._getTemplate();
-        this._setEventListeners();
-        this._element.querySelector('.place__image').src = this._image;
+        this._placeImage = this._element.querySelector('.place__image');
+        this._placeImage.src = this._image;
         this._element.querySelector('.place__heading').textContent = this._text;
-        this._element.querySelector('.place__image').alt = this._text;
+        this._placeImage.alt = this._text;
+
+        this._setEventListeners();
 
         return this._element;
     }
 
     _setEventListeners(){
-        this._element.querySelector('.place__like-button').addEventListener('click', () => {this._addLike()});
+        const likeButton = this._element.querySelector('.place__like-button');
+        likeButton.addEventListener('click', () => {this._addLike(likeButton)});
         this._element.querySelector('.place__delete-button').addEventListener('click', () => {this._deleteCard()});
         this._element.querySelector('.place__image-button').addEventListener('click', () => {this._handlePreviewPicture()});
     }
 
-    _addLike(){
-        this._element.querySelector('.place__like-button').classList.toggle('place__like-button_active');
+    _addLike(likeButton){
+        likeButton.classList.toggle('place__like-button_active');
       
     }
 
@@ -42,10 +45,12 @@ export default class Card {
 
     _handlePreviewPicture(){
         const popupPhoto = document.querySelector('.popup_type_photo');
+        const popupPhotoImage = popupPhoto.querySelector('.popup__image');
+        
         popupPhoto.classList.toggle('popup_opened');
         popupPhoto.querySelector('.popup__text').textContent = this._text;
-        popupPhoto.querySelector('.popup__image').src = this._image;
-        popupPhoto.querySelector('.popup__image').alt = this._text;
+        popupPhotoImage.src = this._image;
+        popupPhotoImage.alt = this._text;
     }
 
 }

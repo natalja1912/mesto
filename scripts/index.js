@@ -24,17 +24,29 @@ const closeButtonProfile = popupProfile.querySelector('.popup__close-button_type
 const closeButtonPlace = popupPlace.querySelector('.popup__close-button_type_place');
 const closeButtonPhoto = popupPhoto.querySelector('.popup__close-button_type_photo');
 
-const popupElementList = Array.from(document.querySelectorAll('.popup__item'));
+const formList = Array.from(document.querySelectorAll('.popup__container'));
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
 //открытие и закрытие форм
 
-function togglePopup(popup){
-    popup.classList.toggle('popup_opened');
-    if (!popup.classList.contains('popup_type_photo')){
-      validateForm (popup.querySelector('.popup__container'));
+function openPopup(popup){
+    popup.classList.add('popup_opened');
+    
+}
+
+function closePopup(popup){
+    popup.classList.remove('popup_opened');
+
+    if (popup.classList.contains('popup_type_profile')){
+        profileValidator. formReset();
     }
-};
+    
+    if (popup.classList.contains('popup_type_place')){
+        placeValidator. formReset();
+    }
+    
+}
+
 
 //валидация форм
 const selectors = {
@@ -46,19 +58,20 @@ const selectors = {
     
 };
 
-function validateForm (form){
-        const formValidator = new FormValidator(selectors, form);
-        formValidator.enableValidation();
+const profileValidator = new FormValidator(selectors, popupProfileForm);
+profileValidator.enableValidation();
 
-};
+const placeValidator = new FormValidator(selectors, popupPlaceForm);
+placeValidator.enableValidation();
+
 
 //загрузка данных со страницы в форму редактирования профиля
 
 function formProfileInitialInfo (){
-    togglePopup(popupProfile);
+    openPopup(popupProfile);
     popupName.value = coverName.textContent;
     popupJob.value = coverJob.textContent;
-};
+}
 
 //загрузка данных из формы редактирования профиля исследователя на страницу
 
@@ -66,9 +79,9 @@ function formSubmitHandlerProfile(evt){
     evt.preventDefault();
     coverName.textContent = popupName.value;
     coverJob.textContent = popupJob.value;
-    togglePopup(popupProfile);
+    closePopup(popupProfile);
     
-};
+}
 
 //coздание 6ти первых карточек
 
@@ -91,44 +104,42 @@ function formSubmitHandlerPlace(evt){
     const text = popupPlaceName.value;
     const link = popupPlaceLink.value;
     renderCard({name: text, link: link});
-    popupPlaceForm.reset();
-    togglePopup(popupPlace);
-};
+    closePopup(popupPlace);
+}
 
 
 //обработчики событий кнопок
 
 editButton.addEventListener('click', formProfileInitialInfo);
-addButton.addEventListener('click', () => togglePopup(popupPlace));
+addButton.addEventListener('click', () => openPopup(popupPlace));
 
-closeButtonProfile.addEventListener('click', () => togglePopup(popupProfile));
-closeButtonPlace.addEventListener('click', () => togglePopup(popupPlace));
-closeButtonPhoto.addEventListener('click', () => togglePopup(popupPhoto));
+closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
+closeButtonPlace.addEventListener('click', () => closePopup(popupPlace));
+closeButtonPhoto.addEventListener('click', () => closePopup(popupPhoto));
 
 popupProfileForm.addEventListener('submit', formSubmitHandlerProfile);
 popupPlaceForm.addEventListener('submit', formSubmitHandlerPlace);
 
-//Закрытие попапов кликом на оверлей и нажатием на Esc
+//Закрытие попапов кликом на оверлей и нажатием на клавишу Escape
 
-popupElementList.forEach (popupElement => closePopup (popupElement));
+popupList.forEach (popup => quickClosePopup (popup));
 
-function closePopup (popupElement) {
-    popupList.forEach ( (popup) => {
+function quickClosePopup (popup) {
+    window.addEventListener('keydown', (evt) => escHandler(evt, popup));
+    const popupElement = popup.querySelector('.popup__item');
     popup.addEventListener('click', (evt)  => {
         if (!popupElement.contains(evt.target)){
-            togglePopup(popup);
+            closePopup(popup);
             }
-        })
+        });
+}
+  
+function escHandler (evt, popup) {
+    if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
+        closePopup(popup);
+        } 
+}
 
-    window.addEventListener('keydown', (evt)  => {
-        if (evt.key === 'Escape'){
-            popup.classList.remove('popup_opened');
-            }
-        })
-
-    })
-
-};
 
 
 

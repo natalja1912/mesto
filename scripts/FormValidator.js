@@ -50,10 +50,12 @@ export default class FormValidator{
         formError.textContent = '';
     }
 
-    _validationErrorsDelete () {
+    formReset () {
         this._inputList.forEach ( (input) => {
             const formError = input.closest(this._fieldSelector).querySelector(this._errorSelector);
             this._hideInputError(input, formError);
+            this._form.reset();
+            this._toggleSubmitButton();
         });
     }
 
@@ -77,7 +79,6 @@ export default class FormValidator{
 
 
     enableValidation(){
-        this._validationErrorsDelete();
         this._setEventListeners();
     }
 }
