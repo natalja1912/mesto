@@ -135,7 +135,9 @@ function quickClosePopup (popup) {
   
 function escHandler (evt, popup) {
     if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
+        console.log("HELLO");
         closePopup(popup);
+        
         } 
 }
 
