@@ -1,6 +1,7 @@
+import {initialCards, openPopup, closePopup} from './utils.js';
 import Card from './Card.js';
-import initialCards from './utils.js';
 import FormValidator from './FormValidator.js';
+
 
 const cover = document.querySelector('.cover');
 const editButton = cover.querySelector('.cover__edit');
@@ -26,26 +27,6 @@ const closeButtonPhoto = popupPhoto.querySelector('.popup__close-button_type_pho
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
-//открытие и закрытие форм
-
-function openPopup(popup){
-    popup.classList.add('popup_opened');
-    
-}
-
-function closePopup(popup){
-    popup.classList.remove('popup_opened');
-
-    if (popup.classList.contains('popup_type_profile')){
-        profileValidator. formReset();
-    }
-    
-    if (popup.classList.contains('popup_type_place')){
-        placeValidator. formReset();
-    }
-    
-}
-
 
 //валидация форм
 const selectors = {
@@ -67,10 +48,19 @@ placeValidator.enableValidation();
 //загрузка данных со страницы в форму редактирования профиля
 
 function formProfileInitialInfo (){
+    profileValidator. formReset();
     openPopup(popupProfile);
     popupName.value = coverName.textContent;
     popupJob.value = coverJob.textContent;
 }
+
+//открытие формы для добавления нового места
+
+function formPlaceOpen (){
+    placeValidator. formReset();
+    openPopup(popupPlace);
+}
+
 
 //загрузка данных из формы редактирования профиля исследователя на страницу
 
@@ -110,7 +100,7 @@ function formSubmitHandlerPlace(evt){
 //обработчики событий кнопок
 
 editButton.addEventListener('click', formProfileInitialInfo);
-addButton.addEventListener('click', () => openPopup(popupPlace));
+addButton.addEventListener('click', formPlaceOpen);
 
 closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
 closeButtonPlace.addEventListener('click', () => closePopup(popupPlace));
@@ -119,29 +109,26 @@ closeButtonPhoto.addEventListener('click', () => closePopup(popupPhoto));
 popupProfileForm.addEventListener('submit', formSubmitHandlerProfile);
 popupPlaceForm.addEventListener('submit', formSubmitHandlerPlace);
 
-//Закрытие попапов кликом на оверлей и нажатием на клавишу Escape
+//Закрытие попапов кликом на оверлей 
 
 popupList.forEach (popup => quickClosePopup (popup));
 
 function quickClosePopup (popup) {
-    window.addEventListener('keydown', (evt) => escHandler(evt, popup));
+    
     const popupElement = popup.querySelector('.popup__item');
     popup.addEventListener('click', (evt)  => {
         if (!popupElement.contains(evt.target)){
             closePopup(popup);
             }
         });
-}
-  
-function escHandler (evt, popup) {
-    if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
-        console.log("HELLO");
-        closePopup(popup);
         
-        } 
 }
 
 
+  
+
+
+   
 
 
 
