@@ -1,0 +1,16 @@
+.cover__profile{
+    
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    align-items: end;
+}
+
+@media screen and (max-width: 767px) {
+    .cover__profile{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}

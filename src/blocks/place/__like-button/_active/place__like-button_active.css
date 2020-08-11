@@ -1,0 +1,11 @@
+.place__like-button_active{
+    background: url(../../../../images/like-button-black.svg) center no-repeat;
+    background-size: contain;
+    border: none;
+    background-color: #FFFFFF;
+    
+}
+
+.place__like-button_active:focus{
+    border: none;
+}
