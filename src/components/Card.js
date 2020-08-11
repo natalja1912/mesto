@@ -1,12 +1,12 @@
-import {openPopup} from './utils.js';
 
 //создание новой карточки
 
 export default class Card {
-    constructor (data, cardSelector){
+    constructor (data, cardSelector, handleCardClick){
         this._text = data.name;
         this._image = data.link;
-        this._cardSelector = cardSelector;        
+        this._cardSelector = cardSelector;   
+        this._handleCardClick = handleCardClick;        
     }
 
     _getTemplate(){
@@ -31,7 +31,7 @@ export default class Card {
         const likeButton = this._element.querySelector('.place__like-button');
         likeButton.addEventListener('click', () => {this._addLike(likeButton)});
         this._element.querySelector('.place__delete-button').addEventListener('click', () => {this._deleteCard()});
-        this._element.querySelector('.place__image-button').addEventListener('click', () => {this._handlePreviewPicture()});
+        this._element.querySelector('.place__image-button').addEventListener('click', () => {this._handleCardClick({image:this._image, text: this._text})});
     }
 
     _addLike(likeButton){
@@ -43,15 +43,4 @@ export default class Card {
         this._element.closest('.place').remove();
     }
     
-
-    _handlePreviewPicture(){
-        const popupPhoto = document.querySelector('.popup_type_photo');
-        const popupPhotoImage = popupPhoto.querySelector('.popup__image');
-        
-        openPopup(popupPhoto);
-        popupPhoto.querySelector('.popup__text').textContent = this._text;
-        popupPhotoImage.src = this._image;
-        popupPhotoImage.alt = this._text;
-              
-    }
 }

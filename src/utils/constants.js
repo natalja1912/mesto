@@ -1,34 +1,23 @@
-export {initialCards, openPopup, closePopup};
 
 
-//открытие и закрытие попапов
+export const editButton = document.querySelector('.cover__edit');
+export const addButton = document.querySelector('.cover__add');
 
-function openPopup(popup){
-    popup.classList.add('popup_opened');
-    window.addEventListener('keydown', escHandler);
+export const popupName = document.querySelector('.popup__text_type_name');
+export const popupJob = document.querySelector('.popup__text_type_job');
+
+export const selectors = {
+    formSelector: '.popup__container',
+    fieldSelector: '.popup__input',
+    inputSelector: '.popup__text',
+    errorSelector: '.popup__input-error',
+    buttonSelector: '.popup__add-button',
     
-}
-
-function closePopup(popup){
-    popup.classList.remove('popup_opened');
-    window.removeEventListener('keydown', escHandler);    
-    
-}
-
-//функция закрытия попапов  нажатием на клавишу Escape
-
-function escHandler (evt) {
-    
-    if (evt.key === 'Escape') {
-        const popup = document.querySelector('.popup_opened');
-        closePopup(popup);
-        } 
-    
-}
+};
 
 //6 первоначальных карточек 
 
-const initialCards = [
+export const initialCards = [
     {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
