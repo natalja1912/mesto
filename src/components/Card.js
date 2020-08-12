@@ -41,6 +41,7 @@ export default class Card {
 
     _deleteCard(){
         this._element.closest('.place').remove();
+        this._element = null;
     }
     
 }
