@@ -1,0 +1,17 @@
+.place__sumoflikes-button{
+    width: 21px;
+    height: 18px;
+    margin: 0;
+    margin-top: 3px;
+    padding: 0;
+    background: none;
+    font-family: "Inter", Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 1;
+    border: none;
+    text-align: center;
+    color: #000000;
+    box-sizing: border-box;
+}

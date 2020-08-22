@@ -28,7 +28,10 @@
                         <button class="place__image-button"><img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск фото"></button>
                         <div class="place__info">
                             <p class="place__heading">Карачаевск</p>
-                            <button class="place__like-button" aria-label="Мне нравится" type="button"></button>
+                            <div class="place__buttons">
+                                <button class="place__like-button" aria-label="Мне нравится" type="button"></button>
+                                <button class="place__sumoflikes-button" aria-label="Количество лайков" type="button"></button>
+                            </div>
                         </div>
                         <button class="place__delete-button" aria-label="Удалить картинку" type="button"></button>
                     </div>
@@ -73,6 +76,15 @@
                     <img class="popup__image" src="./images/karachaevsk.jpg" alt="Карачаевск фото">
                     <p class="popup__text popup__text_type_photo">Text</p>
                     <button class="popup__close-button popup__close-button_type_photo" type="button"></button>
+                </div>
+            </section>
+            <section class="popup popup_type_delete">
+                <div class="popup__delete-group popup__item popup__container popup__container_type_delete">
+                    <p class="popup__text popup__text_type_delete">Вы уверены?</p>
+                    <button class="popup__add-button popup__add-button_type_delete" type="submit">
+                        Да
+                    </button>
+                    <button class="popup__close-button popup__close-button_type_delete" type="button"></button>
                 </div>
             </section>
         </main>

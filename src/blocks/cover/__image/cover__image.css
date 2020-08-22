@@ -9,6 +9,14 @@
     border-radius: 95%;
   }
 
+.cover__image:hover{
+    background: #C4C4C4;
+    border-radius: 0%;
+    background-image: url(../../../images/edit-button.svg);
+    background-size: cover;
+    background-position: center;
+}
+
   @media screen and (max-width: 767px) {
     .cover__image{
         margin: 0;
