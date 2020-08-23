@@ -2,6 +2,7 @@ import Api from '../components/Api.js';
 
 export const editButton = document.querySelector('.cover__edit');
 export const addButton = document.querySelector('.cover__add');
+export const avatarButton = document.querySelector('.cover__image');
 
 export const popupName = document.querySelector('.popup__text_type_name');
 export const popupJob = document.querySelector('.popup__text_type_job');
