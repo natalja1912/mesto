@@ -153,6 +153,7 @@ const popupPlace = new PopupWithForm('.popup_type_place', (data) => {
     .then((res) => {
       const card = {};
       createItem(res, card);
+      initialCards.push(card);
       renderCard(card);
     })
     .then(() => {
@@ -202,8 +203,22 @@ function handleDeleteClick(id) {
 
 const popupDelete = new PopupWithButton('.popup_type_delete', () => {
   api.deleteCard(cardId)
+    .then(() => {
+      //ищем в массиве карточек нужную карточку для удаления по cardID
+      for (let i = 0; i <= initialCards.length; i += 1){
+        if (initialCards[i].cardId === cardId){
+          let n = initialCards.length - i - 1;
+          initialCards.splice(i, 1);
+          return (n);
+        }
+      }
+    })
+    .then((i) => {
+      //удаляем карточку с нужным номером
+      const places = document.querySelector(placesSelector);
+      places.removeChild(places.childNodes[i]);
+    })
     .then(() => popupDelete.close())
-    .then(() => document.querySelector(placesSelector).firstChild.remove())
     .then(() => api.getInitialCards())
     .catch((err) => {
       console.log(err);
