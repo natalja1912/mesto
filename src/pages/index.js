@@ -29,6 +29,27 @@ function renderLoading(data) {
     popupSaveButton.textContent = "Сохранить";
   }
 }
+//замена аватара
+function formAvatarOpen() {
+  avatarValidator.formReset();
+  popupAvatar.open();
+}
+
+const popupAvatar = new PopupWithForm('.popup_type_avatar', (data) => {
+  const avatarLink = data.popup__text_type_placelink;
+  renderLoading(true);
+  api.changeAvatar(avatarLink)
+    .then(() => {
+      avatarButton.style.backgroundImage = `url(${avatarLink})`;
+      popupAvatar.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(renderLoading(false));
+});
+
+popupAvatar.setEventListeners();
 
 //загрузка данных о пользователе с сервера
 let myId = '';
@@ -46,10 +67,12 @@ api.getUserInfo()
 
 const popupProfile = new PopupWithForm('.popup_type_profile', (data) => {
   const { popup__text_type_name: name, popup__text_type_job: job } = data;
+  data.link = avatarButton.style.backgroundImage.slice(5, -2);
+  const link = data.link;
   renderLoading(true);
-  api.sendUserInfo({ name, job })
+  api.sendUserInfo({ name, job, link })
     .then(() => {
-      userInfo.setUserInfo({ name, job });
+      userInfo.setUserInfo({ name, job, link });
     })
     .then(() => {
       popupProfile.close();
@@ -78,34 +101,13 @@ function formProfileOpen() {
     .then((res) => {
       popupName.value = res.name;
       popupJob.value = res.about;
+      avatarButton.style.backgroundImage = res.avatar;
     })
     .then(() => popupProfile.open())
     .catch((err) => {
       console.log(err);
     })
 }
-
-//замена аватара
-function formAvatarOpen() {
-  avatarValidator.formReset();
-  popupAvatar.open();
-}
-
-const popupAvatar = new PopupWithForm('.popup_type_avatar', (data) => {
-  const avatarLink = data.popup__text_type_placelink;
-  renderLoading(true);
-  api.changeAvatar(avatarLink)
-    .then(() => {
-      avatarButton.style.backgroundImage = `url(${avatarLink})`;
-      popupAvatar.close();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(renderLoading(false));
-});
-
-popupAvatar.setEventListeners();
 
 //загрузка первых карточек на страницу
 const placesSelector = '.places';
