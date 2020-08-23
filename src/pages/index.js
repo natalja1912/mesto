@@ -1,5 +1,5 @@
 import './index.css';
-import { editButton, addButton, avatarButton, popupName, popupJob, selectors, api } from '../utils/constants.js';
+import { editButton, addButton, avatarButton, popupSaveButton, popupName, popupJob, selectors, api } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
@@ -19,6 +19,17 @@ avatarValidator.enableValidation();
 
 const userInfo = new UserInfo({ userNameSelector: '.cover__heading', userJobSelector: '.cover__subheading', avatarSelector: '.cover__image' });
 
+//изменение текста на кнопке sumbit при загрузке данных с сервера
+
+function renderLoading(data) {
+  if (data) {
+    popupSaveButton.textContent = "Сохранение...";
+  }
+  else {
+    popupSaveButton.textContent = "Сохранить";
+  }
+}
+
 //загрузка данных о пользователе с сервера
 let myId = '';
 api.getUserInfo()
@@ -35,9 +46,18 @@ api.getUserInfo()
 
 const popupProfile = new PopupWithForm('.popup_type_profile', (data) => {
   const { popup__text_type_name: name, popup__text_type_job: job } = data;
-  userInfo.setUserInfo({ name, job });
-  api.sendUserInfo({ name, job });
-
+  renderLoading(true);
+  api.sendUserInfo({ name, job })
+    .then(() => {
+      userInfo.setUserInfo({ name, job });
+    })
+    .then(() => {
+      popupProfile.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(renderLoading(false))
 });
 
 popupProfile.setEventListeners();
@@ -73,6 +93,7 @@ function formAvatarOpen() {
 
 const popupAvatar = new PopupWithForm('.popup_type_avatar', (data) => {
   const avatarLink = data.popup__text_type_placelink;
+  renderLoading(true);
   api.changeAvatar(avatarLink)
     .then(() => {
       avatarButton.style.backgroundImage = `url(${avatarLink})`;
@@ -81,6 +102,7 @@ const popupAvatar = new PopupWithForm('.popup_type_avatar', (data) => {
     .catch((err) => {
       console.log(err);
     })
+    .finally(renderLoading(false));
 });
 
 popupAvatar.setEventListeners();
@@ -124,15 +146,20 @@ function createItem(item, card) {
 
 const popupPlace = new PopupWithForm('.popup_type_place', (data) => {
   const { popup__text_type_placename: name, popup__text_type_placelink: link } = data;
+  renderLoading(true);
   api.postNewCard({ name, link })
     .then((res) => {
       const card = {};
       createItem(res, card);
       renderCard(card);
     })
+    .then(() => {
+      popupPlace.close();
+    })
     .catch((err) => {
       console.log(err);
     })
+    .finally(renderLoading(false));
 });
 
 popupPlace.setEventListeners();
