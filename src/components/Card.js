@@ -64,33 +64,6 @@ export default class Card {
                 else {
                     this._countLikesButton.textContent -= 1;
                 }
-                this._deleteLikeClick //добавление новых карточек на страницу
-
-                function createItem(item, card) {
-                    card.name = item.name;
-                    card.link = item.link;
-                    card.ownerId = item.owner._id;
-                    card.cardId = item._id;
-                    card.likes = [];
-                    item.likes.forEach((like) => {
-                        card.likes.push(like._id);
-                    })
-                }
-
-                const popupPlace = new PopupWithForm('.popup_type_place', (data) => {
-                    const { popup__text_type_placename: name, popup__text_type_placelink: link } = data;
-                    api.postNewCard({ name, link })
-                        .then((res) => {
-                            const card = {};
-                            createItem(res, card);
-                            renderCard(card);
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        })
-                });
-
-                popupPlace.setEventListeners(); (this._cardId);
             }
         }
     }
