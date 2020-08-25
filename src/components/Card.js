@@ -37,40 +37,48 @@ export default class Card {
             this._deleteButton.style.display = 'none';
         }
 
+        this._likeButton = this._element.querySelector('.place__like-button');
+        if (this._likesUsers.includes(this._currentUserId)){
+            this._likeButton.classList.add('place__like-button_active');
+        }
+
         this._setEventListeners();
 
         return this._element;
     }
 
     _setEventListeners() {
-        const likeButton = this._element.querySelector('.place__like-button');
-        likeButton.addEventListener('click', () => { this._addLike(likeButton) });
-        this._deleteButton.addEventListener('click', () => { this._deleteCard() });
+        this._likeButton.addEventListener('click', () => { this._addLike() });
+        this._deleteButton.addEventListener('click', () => { this._handleDeleteCard() });
         this._element.querySelector('.place__image-button').addEventListener('click', () => { this._handleCardClick({ image: this._image, text: this._text }) });
     }
 
-    _addLike(likeButton) {
-        if (!this._likesUsers.includes(this._currentUserId)) {
-            likeButton.classList.toggle('place__like-button_active');
+    _addLike() {
+        this._likeButton.classList.toggle('place__like-button_active');
 
-            if (likeButton.classList.contains('place__like-button_active')) {
+            if (this._likeButton.classList.contains('place__like-button_active')) {
                 this._countLikesButton.textContent = this._likesCount + 1;
                 this._addLikeClick(this._cardId);
             }
+
             else {
                 if (this._likesCount === 0) {
                     this._countLikesButton.textContent = 0;
                 }
                 else {
                     this._countLikesButton.textContent -= 1;
+                    this._deleteLikeClick(this._cardId);
                 }
             }
         }
-    }
 
-    _deleteCard() {
-        document.querySelector('.popup_type_delete').classList.add('popup_opened');
-        this._handleDeleteClick(this._cardId);
+    _handleDeleteCard() {
+        this._handleDeleteClick(this);
+    } 
+    
+    removeCard(){
+        this._element.remove();
+        this._element = null;
     }
 
 }

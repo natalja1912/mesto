@@ -34,7 +34,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data.job
+        about: data.about
       })
     })
       .then(res => {
@@ -75,22 +75,9 @@ export default class Api {
       })
   }
 
-  addLike(cardId) {
+  changeLike(cardId, method) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
-      method: 'PUT',
-      headers: this._headers
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
-  }
-
-  deleteLike(cardId) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
-      method: 'DELETE',
+      method: method,
       headers: this._headers
     })
       .then(res => {

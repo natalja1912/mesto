@@ -5,9 +5,17 @@ export default class UserInfo {
         this._avatar = document.querySelector(avatarSelector);
     }
 
-    setUserInfo({ name, job, link }) {
+    setUserInfo({ name, about, avatar }) {
         this._userName.textContent = name;
-        this._userJob.textContent = job;
-        this._avatar.style.backgroundImage = `url(${link})`;
+        this._userJob.textContent = about;
+        this._avatar.style.backgroundImage = `url(${avatar})`;
+    }
+
+    getUserInfo() {
+        const info = {};
+        info.name = this._userName.textContent;
+        info.about = this._userJob.textContent;
+        info.avatar = this._avatar.style.backgroundImage;
+        return info;
     }
 }
